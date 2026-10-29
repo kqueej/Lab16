@@ -222,66 +222,125 @@
 
 // Final task
 
-int[] articleNumbers =
-[
-    1023, 1051, 1104, 1178, 1205,
-    1260, 1302, 1410, 1508, 1612
-];
+// int[] articleNumbers =
+// [
+//     1023, 1051, 1104, 1178, 1205,
+//     1260, 1302, 1410, 1508, 1612
+// ];
 
-int FindLinear(int[] numbers, int target, out int checks)
-{
-    checks = 0;
+// int FindLinear(int[] numbers, int target, out int checks)
+// {
+//     checks = 0;
 
-    for (int i = 0; i < numbers.Length; i++)
-    {
-        checks++;
+//     for (int i = 0; i < numbers.Length; i++)
+//     {
+//         checks++;
 
-        if (numbers[i] == target)
-            return i;
-    }
+//         if (numbers[i] == target)
+//             return i;
+//     }
 
-    return -1;
-}
+//     return -1;
+// }
 
-int FindBinary(int[] numbers, int target, out int checks)
-{
-    int left = 0;
-    int right = numbers.Length - 1;
-    checks = 0;
+// int FindBinary(int[] numbers, int target, out int checks)
+// {
+//     int left = 0;
+//     int right = numbers.Length - 1;
+//     checks = 0;
 
-    while (left <= right)
-    {
-        int mid = (left + right) / 2;
-        checks++;
+//     while (left <= right)
+//     {
+//         int mid = (left + right) / 2;
+//         checks++;
 
-        if (numbers[mid] == target)
-            return mid;
+//         if (numbers[mid] == target)
+//             return mid;
 
-        if (numbers[mid] < target)
-            left = mid + 1;
-        else
-            right = mid - 1;
-    }
+//         if (numbers[mid] < target)
+//             left = mid + 1;
+//         else
+//             right = mid - 1;
+//     }
 
-    return -1;
-}
+//     return -1;
+// }
 
-Console.Write("Enter article number: ");
-string input = Console.ReadLine()!;
-int article;
-if (int.TryParse(input, out article) == false)
-{
-    Console.WriteLine("Invalid input");
-    return;
-}
+// Console.Write("Enter article number: ");
+// string input = Console.ReadLine()!;
+// int article;
+// if (int.TryParse(input, out article) == false)
+// {
+//     Console.WriteLine("Invalid input");
+//     return;
+// }
 
-int index = FindLinear(articleNumbers, article, out int checks);
-Console.WriteLine($"Linear search: {(index != -1 ? $"Index: {index}" : "Product not found")}");
-Console.WriteLine($"Checks: {checks}");
+// int index = FindLinear(articleNumbers, article, out int checks);
+// Console.WriteLine($"Linear search: {(index != -1 ? $"Index: {index}" : "Product not found")}");
+// Console.WriteLine($"Checks: {checks}");
 
-index = FindBinary(articleNumbers, article, out checks);
-Console.WriteLine($"Binary search: {(index != -1 ? $"Index: {index}" : "Product not found")}");
-Console.WriteLine($"Checks: {checks}");
+// index = FindBinary(articleNumbers, article, out checks);
+// Console.WriteLine($"Binary search: {(index != -1 ? $"Index: {index}" : "Product not found")}");
+// Console.WriteLine($"Checks: {checks}");
 
 
 // бинарный поиск обычно требует меньше проверок, но ему нужен отсортированный 
+
+
+// self
+// bool ContainsValue(int[] array, int target)
+// {
+//     for (int i = 0; i < array.Length; i++)
+//     {
+//         if (array[i] == target)
+//             return true;
+//     }
+
+//     return false;
+// }
+
+// int[] numbers = [7, 14, 3, 25, 9, 18];
+
+// Console.WriteLine(ContainsValue(numbers, 25));
+// Console.WriteLine(ContainsValue(numbers, 100));
+
+// Self 2
+// int FindLastOccurrence(int[] numbers, int target)
+// {
+//     int left = 0;
+//     int right = numbers.Length - 1;
+//     int result = -1;
+
+//     while (left <= right)
+//     {
+//         int mid = (left + right) / 2;
+
+//         if (numbers[mid] == target)
+//         {
+//             result = mid;
+//             left = mid + 1;
+//         }
+//         else if (numbers[mid] < target)
+//         {
+//             left = mid + 1;
+//         }
+//         else
+//         {
+//             right = mid - 1;
+//         }
+//     }
+
+//     return result;
+// }
+
+// int[] values = [1, 2, 2, 2, 5, 8];
+
+// Console.WriteLine(FindLastOccurrence(values, 2));
+// Console.WriteLine(FindLastOccurrence(values, 7)); 
+
+// Self 3
+/*
+1. Линейный поиск, т.к данные не отсортированы и список небольшой
+2. Бинарный поиск будет быстрее
+3. Бинарный, т.к он отбрасывает половину оставшегося
+*/
