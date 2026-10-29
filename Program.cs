@@ -219,3 +219,69 @@
 4. Для неотсортированного массива Array.BinarySearch 
 может вернуть неверный результат, даже если элемент существует
 */
+
+// Final task
+
+int[] articleNumbers =
+[
+    1023, 1051, 1104, 1178, 1205,
+    1260, 1302, 1410, 1508, 1612
+];
+
+int FindLinear(int[] numbers, int target, out int checks)
+{
+    checks = 0;
+
+    for (int i = 0; i < numbers.Length; i++)
+    {
+        checks++;
+
+        if (numbers[i] == target)
+            return i;
+    }
+
+    return -1;
+}
+
+int FindBinary(int[] numbers, int target, out int checks)
+{
+    int left = 0;
+    int right = numbers.Length - 1;
+    checks = 0;
+
+    while (left <= right)
+    {
+        int mid = (left + right) / 2;
+        checks++;
+
+        if (numbers[mid] == target)
+            return mid;
+
+        if (numbers[mid] < target)
+            left = mid + 1;
+        else
+            right = mid - 1;
+    }
+
+    return -1;
+}
+
+Console.Write("Enter article number: ");
+string input = Console.ReadLine()!;
+int article;
+if (int.TryParse(input, out article) == false)
+{
+    Console.WriteLine("Invalid input");
+    return;
+}
+
+int index = FindLinear(articleNumbers, article, out int checks);
+Console.WriteLine($"Linear search: {(index != -1 ? $"Index: {index}" : "Product not found")}");
+Console.WriteLine($"Checks: {checks}");
+
+index = FindBinary(articleNumbers, article, out checks);
+Console.WriteLine($"Binary search: {(index != -1 ? $"Index: {index}" : "Product not found")}");
+Console.WriteLine($"Checks: {checks}");
+
+
+// бинарный поиск обычно требует меньше проверок, но ему нужен отсортированный 
